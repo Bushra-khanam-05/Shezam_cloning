@@ -1,121 +1,108 @@
-# 🎵 Shazam Clone : Audio Transcription & Subtitle Search
+# 🎵 Shazam Clone: Audio Transcription & Subtitle Search
 
-## Overview
+## Project Overview
 
-This project focuses on building **AI-powered search systems**, **audio-to-text conversion**, and **interactive search applications**. It integrates **search engine technologies, vector embeddings, speech-to-text models, and subtitle processing** to enable efficient information retrieval and media analysis.
+This project is dedicated to creating an **AI-powered search system** that combines **audio-to-text conversion** with **interactive search functionalities**. By leveraging state-of-the-art technologies like search engines, vector embeddings, speech-to-text models, and subtitle processing, the project facilitates efficient retrieval of information and in-depth media analysis.
 
-## Deployment URL :
+## Project Objective
 
-[Shazam Clone Search Engine](https://huggingface.co/spaces/vjabhi000985/Shazam_Clone_Search_Engine)
+The goal is to develop an advanced search engine algorithm that retrieves subtitles based on user queries with high precision. This is achieved by integrating natural language processing (NLP) and machine learning techniques, and by contrasting:
 
-## Objective
+- **Keyword-based Search Engines:** Relying on exact keyword matches between user queries and indexed documents.
+- **Semantic Search Engines:** Understanding the context and underlying meaning of both queries and documents, surpassing simple keyword matching.
 
-Develop an advanced search engine algorithm that efficiently retrieves subtitles based on user queries, leveraging natural language processing (NLP) and machine learning to enhance search relevance and accuracy.
+## Core Implementation Steps
 
-- Keyword-based vs. Semantic Search Engines
-- Keyword-Based Search Engine: Relies on exact keyword matches between user queries and indexed documents.
-- Semantic Search Engine: Understands the meaning and context of queries and documents beyond keyword matching.
+### 1. Data Preprocessing
 
-## Core Logic
+- Extract and clean subtitle data by removing elements like timestamps and unnecessary punctuation.
+- Optionally, reduce the dataset size (e.g., use only 30% of the data) when compute resources are limited.
 
-The search engine compares user queries against subtitle documents through these key steps:
+### 2. Text Vectorization
 
-### 1. Preprocessing the Data
+- Transform subtitle text into vector embeddings using techniques such as:
+  - **Bag of Words (BOW) / TF-IDF** for traditional keyword-based search.
+  - **BERT-based SentenceTransformers** for capturing semantic nuances in text.
 
-- Extract and clean subtitle data (remove timestamps, punctuation, etc.).
+### 3. Document Chunking
 
-- Subset the dataset if compute resources are limited (e.g., use 30% of the data).
-
-### 2. Generating Text Vectors
-
-- Convert subtitle text into vector embeddings using different techniques:
-
-- BOW (Bag of Words) / TF-IDF → For keyword-based search.
-
-- BERT-based SentenceTransformers → For semantic search.
-
-### 3. Implementing a Document Chunker
-
-- Break down large subtitles into smaller chunks to preserve context.
-
-- Use overlapping windows to prevent information loss.
+- Divide long subtitle files into smaller, manageable chunks to retain context.
+- Employ overlapping windows to minimize information loss during the segmentation process.
 
 ### 4. Storing Embeddings in ChromaDB
 
-- Store vector representations of subtitle chunks in ChromaDB for efficient retrieval.
+- Save the vector representations of the subtitle chunks in ChromaDB, enabling rapid and efficient similarity searches.
 
-### 5. Retrieving Documents Based on User Query
+### 5. Retrieving Relevant Documents
 
-- Convert user audio query to text (using AssemblyAI or other ASR models).
-- Vectorize the text query and compute cosine similarity between query and subtitle embeddings.
-- Rank and return the most relevant subtitle segments.
+- Convert the user’s audio query into text using an ASR model (e.g., AssemblyAI).
+- Vectorize the resulting text and compute cosine similarity with the stored subtitle embeddings.
+- Rank and return the most relevant subtitle segments to the user.
 
 ## Notebooks & Descriptions
 
 ### 1. Audio_2_Text.ipynb
 
-- Converts **audio files into text** using **speech recognition models** using **AssemblyAI**.
-- Useful for **transcription services, podcasts, and accessibility applications**.
+- Converts audio files to text using speech recognition models like AssemblyAI.
+- Useful for applications such as transcription services, podcast analysis, and enhancing accessibility.
 
 ### 2. Chroma_db_Embeddings_V2.ipynb
 
-- Uses **ChromaDB** to create and manage **vector embeddings**.
-- Enables **efficient similarity search, semantic retrieval, and document indexing**.
-- Applied in **question-answering systems, AI-powered search engines, and NLP tasks**.
+- Utilizes ChromaDB for creating and managing vector embeddings.
+- Supports efficient similarity searches, semantic retrieval, and document indexing.
+- Applicable in AI-powered search engines and question-answering systems.
 
 ### 3. Gradio_Search_Engine_Demo.ipynb
 
-- Implements a **search engine demo** using **Gradio**, allowing users to test queries interactively.
-- Supports **keyword-based search, vector search (semantic search), or hybrid models**.
-- Likely integrates with **ChromaDB embeddings** for **intelligent retrieval**.
+- Provides an interactive search engine demo built with Gradio.
+- Allows users to test queries interactively using keyword-based, semantic, or hybrid search models.
+- Integrates with ChromaDB embeddings to facilitate intelligent retrieval.
 
 ### 4. Search_Engine_Extracting_Data.ipynb
 
-- Focuses on **data extraction, scraping, and indexing** for a search engine.
-- Handles **text preprocessing, tokenization, and document structuring**.
-- Useful for **web crawlers, automated indexing, and structured data retrieval**.
+- Focuses on extracting, scraping, and indexing data for the search engine.
+- Handles text preprocessing, tokenization, and structuring of documents.
+- Ideal for applications like web crawling, automated indexing, and structured data retrieval.
 
 ### 5. Shazam_Clone_Search_Engine.ipynb
 
-- Builds a **music recognition system** similar to **Shazam**.
-- Enables **identification of audio, speeches, or sound patterns from audio samples**.
+- Develops a music recognition system akin to Shazam.
+- Capable of identifying audio clips, speeches, or sound patterns from sample audio inputs.
 
 ### 6. Subtitles_Chunking.ipynb
 
-- Processes **subtitle files** by **splitting them into smaller text segments**.
-- Helps in **automatic subtitle generation, video search indexing, and multilingual translation**.
-- Includes **time-stamping, sentence segmentation, and embedding generation** for efficient retrieval.
+- Processes subtitle files by splitting them into smaller, context-preserving segments.
+- Facilitates applications like automatic subtitle generation, video search indexing, and multilingual translation.
+- Incorporates time-stamping, sentence segmentation, and embedding generation for efficient information retrieval.
 
 ### 7. Testing_Search_Mechanism.ipynb
 
-- Evaluates the effectiveness of different **search algorithms**.
-- Tests **ranking models, BM25, TF-IDF, and vector-based retrieval methods**.
+- Evaluates and compares the performance of different search algorithms.
+- Tests methods including BM25, TF-IDF, and vector-based retrieval to determine the best ranking models.
 
-## Libraries Used :
+## Libraries Utilized
 
-- gradio
-- assemblyai
-- pydub
-- python-dotenv
-- chromadb
-- sentence-transformers
+- **gradio**
+- **assemblyai**
+- **pydub**
+- **python-dotenv**
+- **chromadb**
+- **sentence-transformers**
 
 ## Applications
 
-- **Multimodal Search Engines**: Combining **text, audio, and embeddings** for **intelligent retrieval**.
-- **Audio & Music Recognition**: Implementing a **Shazam-like** system for **identifying songs and sound patterns**.
-- **Semantic Search & NLP**: Using **vector embeddings for AI-driven document retrieval**.
-- **Interactive Demos & UI**: Leveraging **Gradio** for easy-to-use **search engine interfaces**.
-- **Video & Subtitle Processing**: Extracting and structuring **subtitles for indexing and accessibility**.
+- **Multimodal Search Engines:** Integrates text, audio, and vector embeddings to offer intelligent search capabilities.
+- **Audio & Music Recognition:** Implements a Shazam-like system for identifying songs and various sound patterns.
+- **Semantic Search & NLP:** Utilizes vector embeddings to drive advanced document retrieval and AI-driven search functionalities.
+- **Interactive Demos & UI:** Leverages Gradio to provide a user-friendly interface for testing search queries.
+- **Video & Subtitle Processing:** Extracts and structures subtitles to enhance accessibility and enable efficient video search indexing.
 
 ## Summary
 
-This project integrates **cutting-edge AI search technologies**, **text/audio processing**, and **interactive search tools**. With **vector databases, NLP models, and search ranking algorithms**, it offers **advanced media analysis, transcription, and retrieval capabilities**. 🚀
+This project unifies advanced AI search technologies with robust text/audio processing techniques to deliver a powerful media analysis tool. Utilizing vector databases, NLP models, and sophisticated ranking algorithms, it enables efficient transcription, subtitle retrieval, and interactive search experiences. 🚀
 
 ---
 
-### Want to Contribute?
+### Contribution
 
-Feel free to **open issues, suggest improvements, or contribute** to enhance this project!
-
-Let me know if you need modifications! 😊
+Contributions are welcome! Feel free to open issues, suggest improvements, or contribute directly to enhance this project. Let me know if any modifications are needed. 😊
